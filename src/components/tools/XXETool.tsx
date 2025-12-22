@@ -88,10 +88,8 @@ export default function XXETool() {
     return (
         <div className="space-y-6">
             <ToolHeader
-                title="XXE Injection Builder"
-                description="Interactive XML External Entity payload generator"
-                badge="RT"
-                icon={<FileCode size={24} />}
+                title="XML External Entity (XXE)"
+                description="XXE injection payloads for exploiting XML parsers and extracting sensitive data"
             />
 
             <Card className="!p-6 space-y-4 border-l-4 border-l-htb-green">
@@ -139,15 +137,13 @@ export default function XXETool() {
                 {(activeTab === 'inband' ? INBAND_PAYLOADS : OOB_PAYLOADS).map((item, idx) => {
                     const finalPayload = formatPayload(item.template);
                     return (
-                        <Card key={idx} className="!p-4 hover:border-htb-green/50 transition-colors">
-                            <div className="flex flex-col gap-3">
-                                <div>
-                                    <h4 className="text-sm font-bold text-htb-green">{item.name}</h4>
-                                    <p className="text-xs text-gray-400">{item.desc}</p>
-                                </div>
-                                <PayloadBlock content={finalPayload} />
-                            </div>
-                        </Card>
+                        <div key={idx} className="mb-6">
+                            <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">
+                                {item.name}
+                            </h3>
+                            <p className="text-xs text-gray-400 mb-3">{item.desc}</p>
+                            <PayloadBlock content={finalPayload} />
+                        </div>
                     );
                 })}
             </div>

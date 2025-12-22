@@ -39,11 +39,9 @@ sort -u all_raw.txt`;
         subcategory: 'Fingerprinting',
         desc: 'HTTP toolkit for single target.',
         authMode: 'none',
-        args: [ARG_OUTPUT],
-        generate: (v, args) => {
-            let cmd = `httpx -list -status-code -title -no-fallback ${v.filepath || '$FILEPATH'}`;
-            if (args.saveOutput) cmd += ` -o httpx.txt`;
-            return cmd;
+        args: [],
+        generate: (v) => {
+            return `httpx -list -status-code -title -no-fallback ${v.filepath || '$FILEPATH'}`;
         }
     },
     {

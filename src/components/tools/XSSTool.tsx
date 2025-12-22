@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Card, TextArea, Button, Select, Tabs, PayloadBlock } from '../ui';
-import { Copy, Check, ShieldAlert, Code } from 'lucide-react';
+import { Card, TextArea, Button, Select, TabNav, PayloadBlock } from '../ui';
+import { Copy, Check, Code } from 'lucide-react';
 
 // --- Components for Internal Tabs ---
 
@@ -154,11 +154,17 @@ const XSSObfuscator = () => {
 };
 
 export default function XSSTool() {
+    const [activeTab, setActiveTab] = useState('payloads');
+
+    const tabs = [
+        { id: 'payloads', label: 'Payloads' },
+        { id: 'obfuscator', label: 'Obfuscator' },
+    ];
+
     return (
         <div className="space-y-6">
             <div>
-                <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                    <ShieldAlert className="text-htb-green" size={24} />
+                <h2 className="text-2xl font-black text-white">
                     Cross-Site Scripting (XSS)
                 </h2>
                 <p className="text-gray-400">
@@ -166,12 +172,10 @@ export default function XSSTool() {
                 </p>
             </div>
 
-            <Tabs
-                items={[
-                    { id: 'payloads', label: 'Payloads', icon: <Code size={16} />, content: <XSSPayloads /> },
-                    { id: 'obfuscator', label: 'Obfuscator', icon: <ShieldAlert size={16} />, content: <XSSObfuscator /> },
-                ]}
-            />
+            <TabNav tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
+
+            {activeTab === 'payloads' && <XSSPayloads />}
+            {activeTab === 'obfuscator' && <XSSObfuscator />}
         </div>
     );
 }

@@ -6,8 +6,8 @@ import Home from './pages/Home';
 import GuidesPage from './pages/Guides';
 import ReferencesPage from './pages/References';
 import ToolsLayout from './layouts/ToolsLayout';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { CommandPalette } from './components/CommandPalette';
+import { ErrorBoundary } from './components/core/ErrorBoundary';
+import { CommandPalette } from './components/core/CommandPalette';
 import './index.css';
 
 function App() {

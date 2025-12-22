@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Input, Select, Button, Card } from '../ui';
+import { Input, Select, Button, Card, PayloadBlock } from '../ui';
 import { ToolHeader } from '../ui/ToolHeader';
 import { Bomb } from 'lucide-react';
 
@@ -160,7 +160,6 @@ export default function MSFVenomBuilder() {
                 title="MSFVenom Builder"
                 description="Generate msfvenom payloads with a visual interface. All options are saved automatically."
                 badge="RT"
-                icon={<Bomb size={24} />}
             />
 
             {/* Configuration Grid */}
@@ -270,46 +269,21 @@ export default function MSFVenomBuilder() {
             </div>
 
             {/* Generated Commands */}
-            <div className="space-y-4">
-                <Card className="bg-htb-darker">
-                    <h3 className="text-lg font-semibold text-htb-green mb-3">MSFVenom Command</h3>
-                    <div className="bg-black/50 rounded-lg p-4 font-mono text-sm text-htb-green overflow-x-auto">
-                        <code>{generateCommand()}</code>
-                    </div>
-                    <div className="mt-3 flex gap-2">
-                        <Button onClick={() => copyToClipboard(generateCommand())}>
-                            {copied ? '✓ Copied!' : 'Copy Command'}
-                        </Button>
-                    </div>
-                </Card>
+            <div className="space-y-6">
+                <div className="mb-6">
+                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">MSFVenom Command</h3>
+                    <PayloadBlock content={generateCommand()} />
+                </div>
 
-                <Card className="bg-htb-darker">
-                    <h3 className="text-lg font-semibold text-htb-green mb-3">Metasploit Handler</h3>
-                    <div className="bg-black/50 rounded-lg p-4 font-mono text-sm text-htb-green overflow-x-auto">
-                        <code>{generateHandler()}</code>
-                    </div>
-                    <div className="mt-3 flex gap-2">
-                        <Button onClick={() => copyToClipboard(generateHandler())}>
-                            Copy Handler
-                        </Button>
-                    </div>
-                </Card>
+                <div className="mb-6">
+                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">Metasploit Handler</h3>
+                    <PayloadBlock content={generateHandler()} />
+                </div>
 
-                <Card className="bg-htb-darker">
-                    <h3 className="text-lg font-semibold text-htb-green mb-3">Handler Module (Copy to Metasploit)</h3>
-                    <div className="bg-black/50 rounded-lg p-4 font-mono text-sm text-htb-green overflow-x-auto whitespace-pre">
-                        {`use exploit/multi/handler
-set PAYLOAD ${config.payload}
-set LHOST ${config.lhost}
-set LPORT ${config.lport}
-run`}
-                    </div>
-                    <div className="mt-3 flex gap-2">
-                        <Button onClick={() => copyToClipboard(`use exploit/multi/handler\nset PAYLOAD ${config.payload}\nset LHOST ${config.lhost}\nset LPORT ${config.lport}\nrun`)}>
-                            Copy Module
-                        </Button>
-                    </div>
-                </Card>
+                <div className="mb-6">
+                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">Handler Module (Copy to Metasploit)</h3>
+                    <PayloadBlock content={`use exploit/multi/handler\nset PAYLOAD ${config.payload}\nset LHOST ${config.lhost}\nset LPORT ${config.lport}\nrun`} />
+                </div>
             </div>
         </div>
     );

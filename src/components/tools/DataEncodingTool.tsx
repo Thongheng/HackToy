@@ -77,8 +77,7 @@ export default function DataEncodingTool() {
     return (
         <div className="space-y-6">
             <div>
-                <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                    <FileText className="text-htb-green" size={24} />
+                <h2 className="text-2xl font-black text-white">
                     Data Encoding
                 </h2>
                 <p className="text-gray-400">

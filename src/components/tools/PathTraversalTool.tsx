@@ -117,8 +117,7 @@ Prevention:
     return (
         <div className="space-y-6">
             <div>
-                <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                    <FolderOpen className="text-htb-green" size={24} />
+                <h2 className="text-2xl font-black text-white">
                     Path Traversal & File Inclusion
                 </h2>
                 <p className="text-gray-400">
@@ -136,8 +135,10 @@ Prevention:
                     </p>
                     {LFI_PAYLOADS.map((section, idx) => (
                         <div key={idx} className="mb-6">
+                            <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">
+                                {section.category}
+                            </h3>
                             <PayloadBlock
-                                title={section.category}
                                 content={section.payloads}
                             />
                         </div>
@@ -148,12 +149,12 @@ Prevention:
             {/* Zip Slip Tab */}
             {activeTab === 'zipslip' && (
                 <div className="space-y-4">
-                    <Card className="!p-6 space-y-4">
-                        <h3 className="text-lg font-bold text-htb-green">Zip Slip Vulnerability</h3>
-                        <pre className="text-xs text-gray-300 whitespace-pre-wrap bg-[#0d1117] rounded p-4">
-                            {ZIP_SLIP_INFO}
-                        </pre>
-                    </Card>
+                    <div className="mb-6">
+                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">
+                            Zip Slip Vulnerability
+                        </h3>
+                        <PayloadBlock content={ZIP_SLIP_INFO} />
+                    </div>
 
                     <Card className="!p-6 space-y-4">
                         <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider">Example Malicious Paths</h3>

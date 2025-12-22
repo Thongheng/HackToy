@@ -34,21 +34,25 @@ export default function WindowsHostEnumTool() {
             </div>
 
             {/* System Information */}
-            <Card className="!p-6">
-                <h3 className="text-lg font-bold text-[#a2ff00] mb-4">System Information Gathering</h3>
+            <div className="mb-6">
+                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">
+                    System Information Gathering
+                </h3>
                 <p className="text-gray-400 text-sm mb-4">Commands to retrieve system information</p>
                 <PayloadBlock
                     content={systemCommands.map(item => `# ${item.name} - ${item.desc}\n${item.cmd}`).join('\n\n')}
                 />
-            </Card>
+            </div>
 
             {/* Network Information */}
-            <Card className="!p-6">
-                <h3 className="text-lg font-bold text-[#a2ff00] mb-4">Network Information Gathering</h3>
+            <div className="mb-6">
+                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">
+                    Network Information Gathering
+                </h3>
                 <PayloadBlock
                     content={networkCommands.map(item => `# ${item.name} - ${item.desc}\n${item.cmd}`).join('\n\n')}
                 />
-            </Card>
+            </div>
         </div>
     );
 }

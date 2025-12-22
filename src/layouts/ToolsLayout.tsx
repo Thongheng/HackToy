@@ -3,7 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown, ChevronRight, AlertCircle, Copy, Settings as SettingsIcon } from 'lucide-react';
 import { TOOLS } from '../data/tools';
 import { CATEGORIES, SUBCATEGORIES, CATEGORY_ORDER } from '../data/categories';
-import { ToolRenderer } from '../components/tools/ToolRenderer';
+import ToolRenderer from '../components/tools/ToolRenderer';
 import type { GlobalInputs } from '../types';
 
 interface ToolsLayoutProps {

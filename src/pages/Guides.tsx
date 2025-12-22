@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BookOpen, Copy, Check } from 'lucide-react';
 import { GUIDES, type GuideItem } from '../data/guides';
 import { useClipboard } from '../hooks/useClipboard';
+import { PayloadBlock } from '../components/ui/PayloadBlock';
 
 export default function GuidesPage() {
     const [selectedGuide, setSelectedGuide] = useState<GuideItem | null>(GUIDES[0]);
@@ -17,7 +18,7 @@ export default function GuidesPage() {
     }, {} as Record<string, GuideItem[]>);
 
     return (
-        <div className="min-h-screen animate-fade-in">
+        <div className="min-h-screen animate-fadeIn">
             <div className="max-w-7xl mx-auto px-6 py-8">
                 {/* Header */}
                 <div className="mb-8">
@@ -83,11 +84,7 @@ export default function GuidesPage() {
                                     </p>
                                 </div>
 
-                                <div className="htb-terminal-content">
-                                    <pre className="font-mono text-sm text-gray-300 whitespace-pre-wrap">
-                                        {selectedGuide.content}
-                                    </pre>
-                                </div>
+                                <PayloadBlock content={selectedGuide.content} />
                             </div>
                         ) : (
                             <div className="htb-card text-center py-12">

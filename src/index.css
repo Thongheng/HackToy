@@ -29,6 +29,8 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 90%;
+  /* Balanced sizing - between RedToy (80%) and default (100%) */
 }
 
 body {

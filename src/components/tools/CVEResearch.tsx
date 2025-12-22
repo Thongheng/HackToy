@@ -77,9 +77,7 @@ export default function CVEResearch() {
         <div className="space-y-6">
             <ToolHeader
                 title="CVE Research"
-                description="Search for Common Vulnerabilities and Exposures (CVEs) with CVSS scoring"
-                badge="RT"
-                icon={<Search size={24} />}
+                description="Search and analyze Common Vulnerabilities and Exposures (CVE) database"
             />
 
             {/* Search Bar */}

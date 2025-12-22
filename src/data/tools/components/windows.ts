@@ -14,17 +14,6 @@ export const WINDOWS_TOOLS: Tool[] = [
         component: React.lazy(() => import('../../../components/tools/PowerShellTool')),
     },
     {
-        id: 'windows_host_enum',
-        name: 'Host Enumeration',
-        category: 'WINDOWS',
-        subcategory: 'Host Enumeration',
-        desc: 'Windows system and network information gathering commands',
-        authMode: 'none',
-        generate: () => '',
-        source: 'hacktools',
-        component: React.lazy(() => import('../../../components/tools/WindowsHostEnumTool')),
-    },
-    {
         id: 'file_transfer',
         name: 'File Transfer',
         category: 'WINDOWS',

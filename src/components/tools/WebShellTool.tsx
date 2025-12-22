@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Copy, Check, Download, ExternalLink } from 'lucide-react';
-import { Card, Button, Input } from '../ui';
+import { Copy, Check, Download, ExternalLink, ChevronRight } from 'lucide-react';
+import { Card, Button, Input, PayloadBlock } from '../ui';
 import { useClipboard } from '../../hooks/useClipboard';
 
 export default function WebShellTool() {
     const [values, setValues] = useState({ ip: '', port: '' });
     const { copied, copy } = useClipboard();
     const [copiedId, setCopiedId] = useState('');
+    const [isReverseShellExpanded, setIsReverseShellExpanded] = useState(false);
 
     const handleChange = (name: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [name]: e.target.value });
@@ -130,27 +131,23 @@ function printit ($string) {
 
     const ShellSection = ({ title, shell, filename, description }: { title: string; shell: string; filename: string; description?: string }) => (
         <div className="mb-6">
-            <h3 className="text-lg font-bold text-[#a2ff00] mb-2">{title}</h3>
-            {description && <p className="text-sm text-gray-400 mb-3">{description}</p>}
-            <div className="htb-terminal-content mb-3">
-                <code className="text-xs text-blue-300 font-mono break-all">{shell}</code>
-            </div>
-            <div className="flex gap-3">
-                <Button
-                    variant="primary"
-                    onClick={() => handleDownload(shell, filename)}
-                    icon={<Download size={16} />}
-                >
-                    Download
-                </Button>
-                <Button
-                    variant="secondary"
-                    onClick={() => handleCopy(shell, filename)}
-                    icon={copiedId === filename ? <Check size={16} className="text-[#a2ff00]" /> : <Copy size={16} />}
-                >
-                    {copiedId === filename ? 'Copied!' : 'Copy'}
-                </Button>
-            </div>
+            <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">
+                {title}
+            </h3>
+            <PayloadBlock
+                content={description ? `# ${description}\n${shell}` : shell}
+                actions={
+                    <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => handleDownload(shell, filename)}
+                        className="h-7 px-2 text-xs text-gray-400 hover:text-white flex items-center gap-1"
+                    >
+                        <Download size={12} />
+                        <span>Download</span>
+                    </Button>
+                }
+            />
         </div>
     );
 
@@ -166,11 +163,10 @@ function printit ($string) {
             </div>
 
             {/* PHP Reverse Shell with inputs */}
-            <Card className="mb-6">
-                <h3 className="text-lg font-bold text-[#a2ff00] mb-3">PHP Reverse Shell</h3>
-                <p className="text-sm text-gray-400 mb-4">
-                    This script will make an outbound TCP connection to a hardcoded IP and port.
-                </p>
+            <div className="mb-6">
+                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">
+                    PHP Reverse Shell
+                </h3>
 
                 <div className="grid grid-cols-2 gap-4 mb-4">
                     <Input
@@ -190,36 +186,53 @@ function printit ($string) {
                     />
                 </div>
 
-                <div className="htb-terminal-content mb-3">
-                    <pre className="font-mono text-xs text-gray-300 whitespace-pre-wrap">{phpReverseShell}</pre>
-                </div>
+                {/* Row with expand toggle and action buttons */}
+                <div className="border border-white/10 rounded-lg overflow-hidden">
+                    <div className="bg-[#0d1117] p-3 flex items-center justify-between">
+                        <button
+                            onClick={() => setIsReverseShellExpanded(!isReverseShellExpanded)}
+                            className="cursor-pointer text-sm text-gray-300 hover:text-[#a2ff00] flex items-center gap-2 flex-1 text-left"
+                        >
+                            <ChevronRight size={16} className={`text-gray-500 transform transition-transform ${isReverseShellExpanded ? 'rotate-90' : ''}`} />
+                            <span className="font-mono">pentestmonkey/php-reverse-shell</span>
+                        </button>
+                        <div className="flex items-center gap-2">
+                            <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => handleCopy(phpReverseShell, 'reverse-shell')}
+                                className="h-7 px-2 text-xs text-gray-400 hover:text-[#a2ff00] flex items-center gap-1"
+                            >
+                                {copiedId === 'reverse-shell' ? <Check size={12} className="text-[#a2ff00]" /> : <Copy size={12} />}
+                                {copiedId === 'reverse-shell' ? 'Copied' : 'Copy'}
+                            </Button>
+                            <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => handleDownload(phpReverseShell, 'rev.php')}
+                                className="h-7 px-2 text-xs text-gray-400 hover:text-[#a2ff00] flex items-center gap-1"
+                            >
+                                <Download size={12} />
+                                Download
+                            </Button>
+                            <a
+                                href="https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="h-7 px-2 text-xs text-gray-400 hover:text-[#a2ff00] flex items-center gap-1"
+                            >
+                                <ExternalLink size={12} />
+                                Repo
+                            </a>
+                        </div>
+                    </div>
 
-                <div className="flex gap-3">
-                    <Button
-                        variant="primary"
-                        onClick={() => handleDownload(phpReverseShell, 'rev.php')}
-                        icon={<Download size={16} />}
-                    >
-                        Download
-                    </Button>
-                    <Button
-                        variant="secondary"
-                        onClick={() => handleCopy(phpReverseShell, 'reverse-shell')}
-                        icon={copiedId === 'reverse-shell' ? <Check size={16} className="text-[#a2ff00]" /> : <Copy size={16} />}
-                    >
-                        {copiedId === 'reverse-shell' ? 'Copied!' : 'Copy'}
-                    </Button>
-                    <a
-                        href="https://raw.githubusercontent.com/pentestmonkey/php-reverse-shell/master/php-reverse-shell.php"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 rounded bg-white/5 hover:bg-white/10 text-gray-300 text-sm font-bold transition-colors"
-                    >
-                        <ExternalLink size={16} />
-                        Pentestmonkey Repo
-                    </a>
+                    {/* Collapsible code section */}
+                    {isReverseShellExpanded && (
+                        <PayloadBlock content={phpReverseShell} />
+                    )}
                 </div>
-            </Card>
+            </div>
 
             <div className="space-y-8">
                 <ShellSection

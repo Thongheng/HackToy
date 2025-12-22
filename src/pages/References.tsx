@@ -12,7 +12,7 @@ export default function ReferencesPage() {
     }, {} as Record<string, ReferenceItem[]>);
 
     return (
-        <div className="min-h-screen animate-fade-in">
+        <div className="min-h-screen animate-fadeIn">
             <div className="max-w-6xl mx-auto px-6 py-8">
                 {/* Header */}
                 <div className="mb-8">

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Search, Terminal, ChevronRight } from 'lucide-react';
-import { searchTools } from '../services/searchService';
-import type { SearchResult } from '../services/searchService';
+import { searchTools } from '../../services/searchService';
+import type { SearchResult } from '../../services/searchService';
 
 interface CommandPaletteProps {
     onSelectTool: (toolId: string, category: string) => void;
@@ -70,7 +70,7 @@ export function CommandPalette({ onSelectTool }: CommandPaletteProps) {
 
     return (
         <div
-            className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] bg-black/70 backdrop-blur-md animate-fade-in"
+            className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] bg-black/70 backdrop-blur-md animate-fadeIn"
             onClick={() => setIsOpen(false)}
         >
             <div

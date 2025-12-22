@@ -71,12 +71,14 @@ export default function NoSQLTool() {
             </div>
 
             {payloads.map((section, idx) => (
-                <Card key={idx} className="!p-6">
-                    <h3 className="text-lg font-bold text-[#a2ff00] mb-4">{section.category}</h3>
+                <div key={idx} className="mb-6">
+                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">
+                        {section.category}
+                    </h3>
                     <PayloadBlock
                         content={section.items.map(item => `# ${item.name}\n${item.payload}`).join('\n\n')}
                     />
-                </Card>
+                </div>
             ))}
 
             <Card className="bg-blue-500/10 border-blue-500/20">

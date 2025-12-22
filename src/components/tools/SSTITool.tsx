@@ -105,10 +105,8 @@ export default function SSTITool() {
     return (
         <div className="space-y-6">
             <ToolHeader
-                title="SSTI Payloads"
-                description="Server-Side Template Injection payloads for various engines and languages"
-                badge="RT"
-                icon={<Terminal size={24} />}
+                title="Server-Side Template Injection (SSTI)"
+                description="SSTI payloads for various template engines to achieve remote code execution"
             />
 
             <Card className="!p-6 space-y-4 border-l-4 border-l-htb-green">
@@ -138,34 +136,22 @@ export default function SSTITool() {
                 </div>
             </Card>
 
-            <div className="space-y-4">
+            <div className="space-y-6">
                 {filteredPayloads.map((item, idx) => (
-                    <Card key={idx} className="!p-4 hover:border-htb-green/50 transition-colors">
-                        <div className="flex flex-col gap-3">
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-2">
-                                    <span className="bg-htb-green/10 text-htb-green px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
-                                        {item.engine}
-                                    </span>
-                                    <span className="text-gray-500 text-xs">
-                                        {item.language}
-                                    </span>
-                                </div>
-                                <div className="flex gap-2">
-                                    <Button size="sm" variant="outline" onClick={() => copyEncoded(item.payload, 'url')}>URL</Button>
-                                    <Button size="sm" variant="outline" onClick={() => copyEncoded(item.payload, 'base64')}>B64</Button>
-                                    {/* Copy is handled by PayloadBlock, but we might want extra formats. 
-                                        Actually PayloadBlock handles the main copy. 
-                                        But SSTITool has URL/B64 buttons too. 
-                                        I'll keep the buttons but replace the code display. */}
-                                </div>
-                            </div>
-
-                            <p className="text-sm text-gray-400">{item.desc}</p>
-
-                            <PayloadBlock content={item.payload} />
-                        </div>
-                    </Card>
+                    <div key={idx} className="mb-6">
+                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">
+                            {item.engine} - {item.language}
+                        </h3>
+                        <PayloadBlock
+                            content={`# ${item.desc}\n${item.payload}`}
+                            actions={
+                                <>
+                                    <Button size="sm" variant="ghost" onClick={() => copyEncoded(item.payload, 'url')} className="h-7 px-2 text-xs text-gray-400 hover:text-white">URL</Button>
+                                    <Button size="sm" variant="ghost" onClick={() => copyEncoded(item.payload, 'base64')} className="h-7 px-2 text-xs text-gray-400 hover:text-white">B64</Button>
+                                </>
+                            }
+                        />
+                    </div>
                 ))}
             </div>
 

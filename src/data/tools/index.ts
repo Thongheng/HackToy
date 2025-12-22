@@ -3,7 +3,7 @@ import { WINDOWS_TOOLS } from './windows';
 import { SERVICE_TOOLS } from './service';
 import { WEB_TOOLS } from './web';
 import { OTHER_TOOLS } from './other';
-import { HACKTOOLS_REGISTRY } from './registry';
+import { HACKTOOLS_REGISTRY } from './components';
 
 export * from './common';
 

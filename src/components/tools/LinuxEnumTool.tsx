@@ -106,8 +106,7 @@ export default function LinuxEnumTool() {
     return (
         <div className="space-y-6">
             <div>
-                <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                    <Terminal className="text-htb-green" size={24} />
+                <h2 className="text-2xl font-black text-white">
                     Linux Commands
                 </h2>
                 <p className="text-gray-400">
@@ -119,16 +118,18 @@ export default function LinuxEnumTool() {
 
             {/* TTY Shell Tab */}
             {activeTab === 'tty' && (
-                <div className="space-y-4">
-                    <Card className="!p-6 bg-blue-500/10 border-blue-500/20">
-                        <h3 className="text-lg font-bold text-blue-400 mb-2">Shell Stabilization Steps</h3>
+                <div className="space-y-6">
+                    <div className="mb-6">
+                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">
+                            Shell Stabilization Steps
+                        </h3>
                         <p className="text-sm text-gray-400 mb-4">
                             Upgrade a basic shell to a fully interactive TTY shell with tab completion and Ctrl+C support
                         </p>
                         <div className="space-y-4">
                             {TTY_STABILIZATION.map((item, idx) => (
                                 <div key={idx} className="flex items-start gap-3">
-                                    <div className="bg-blue-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-2">
+                                    <div className="bg-htb-green text-black text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 mt-2">
                                         {idx + 1}
                                     </div>
                                     <div className="flex-1">
@@ -138,12 +139,16 @@ export default function LinuxEnumTool() {
                                 </div>
                             ))}
                         </div>
-                    </Card>
+                    </div>
 
-                    <h3 className="text-lg font-bold text-white">TTY Spawn Methods</h3>
-                    <PayloadBlock
-                        content={TTY_METHODS.map(item => `# ${item.title}\n${item.cmd}`).join('\n\n')}
-                    />
+                    <div className="mb-6">
+                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">
+                            TTY Spawn Methods
+                        </h3>
+                        <PayloadBlock
+                            content={TTY_METHODS.map(item => `# ${item.title}\n${item.cmd}`).join('\n\n')}
+                        />
+                    </div>
                 </div>
             )}
 

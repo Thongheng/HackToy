@@ -1,9 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { Copy, ChevronDown, Globe, Hash, Terminal, Check } from 'lucide-react';
 import payloads from '../../assets/data/RevShell.json';
-import { Input, Select, Tag, Button, Card } from '../ui';
-import { ToolHeader } from '../ui/ToolHeader';
+import { Input, Select, Tag, Button, Card, PayloadBlock } from '../ui';
 import { Table } from '../ui/Table';
+import { ToolHeader } from '../ui/ToolHeader';
 import type { Column } from '../ui/Table';
 
 interface ShellPayload {
@@ -170,7 +170,6 @@ export default function ReverseShell() {
                 title="Reverse Shell Generator"
                 description="Generate reverse shell payloads for various languages and platforms. Enter your listener IP and port, then copy the command."
                 badge="RT"
-                icon={<Terminal size={20} />}
             />
 
             {/* Configuration */}
@@ -210,19 +209,7 @@ export default function ReverseShell() {
                 emptyText="No payloads match your search"
                 expandable={{
                     expandedRowRender: (record) => (
-                        <div className="htb-terminal">
-                            <div className="htb-terminal-header">
-                                <div className="htb-terminal-dots">
-                                    <span className="htb-terminal-dot htb-terminal-dot--red"></span>
-                                    <span className="htb-terminal-dot htb-terminal-dot--yellow"></span>
-                                    <span className="htb-terminal-dot htb-terminal-dot--green"></span>
-                                </div>
-                                <span className="text-xs text-gray-500 font-mono">{record.name}</span>
-                            </div>
-                            <div className="htb-terminal-content">
-                                <pre className="whitespace-pre-wrap break-all text-[#a2ff00]">{record.command}</pre>
-                            </div>
-                        </div>
+                        <PayloadBlock content={record.command} />
                     ),
                 }}
             />

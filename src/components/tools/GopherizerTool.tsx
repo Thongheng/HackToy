@@ -111,8 +111,7 @@ export default function GopherizerTool() {
     return (
         <div className="space-y-6">
             <div>
-                <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                    <Database className="text-htb-green" size={24} />
+                <h2 className="text-2xl font-black text-white">
                     Gopherizer (SSRF)
                 </h2>
                 <p className="text-gray-400">

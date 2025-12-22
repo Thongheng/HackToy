@@ -96,10 +96,8 @@ export default function MobileHookingTool() {
     return (
         <div className="space-y-6">
             <ToolHeader
-                title="Mobile Hooking & Reversing"
-                description="Generate Frida scripts and Objection commands for Android dynamic analysis"
-                badge="RT"
-                icon={<Smartphone size={24} />}
+                title="Mobile App Hooking"
+                description="Frida scripts and commands for iOS and Android application security testing"
             />
 
             {/* Configuration */}

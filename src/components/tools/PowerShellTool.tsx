@@ -117,8 +117,7 @@ $Result = $Searcher.FindAll()`
     return (
         <div className="space-y-6">
             <div>
-                <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                    <Terminal className="text-htb-green" size={24} />
+                <h2 className="text-2xl font-black text-white">
                     PowerShell Commands
                 </h2>
                 <p className="text-gray-400">
@@ -156,43 +155,43 @@ $Result = $Searcher.FindAll()`
                         </div>
                     </Card>
 
-                    <div>
-                        <h3 className="text-lg font-bold text-white mb-3">Domain Enumeration</h3>
+                    <div className="mb-6">
+                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">Domain Enumeration</h3>
                         <PayloadBlock
                             content={AD_ENUM.domain.map(item => `# ${item.title}\n${item.cmd}`).join('\n\n')}
                         />
                     </div>
 
-                    <div>
-                        <h3 className="text-lg font-bold text-white mb-3">Computer Enumeration</h3>
+                    <div className="mb-6">
+                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">Computer Enumeration</h3>
                         <PayloadBlock
                             content={AD_ENUM.computers.map(item => `# ${item.title}\n${item.cmd}`).join('\n\n')}
                         />
                     </div>
 
-                    <div>
-                        <h3 className="text-lg font-bold text-white mb-3">Admin Groups & Accounts</h3>
+                    <div className="mb-6">
+                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">Admin Groups & Accounts</h3>
                         <PayloadBlock
                             content={AD_ENUM.admins.map(item => `# ${item.title}\n${item.cmd}`).join('\n\n')}
                         />
                     </div>
 
-                    <div>
-                        <h3 className="text-lg font-bold text-white mb-3">GPO Enumeration</h3>
+                    <div className="mb-6">
+                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">GPO Enumeration</h3>
                         <PayloadBlock
                             content={AD_ENUM.gpo.map(item => `# ${item.title}\n${item.cmd}`).join('\n\n')}
                         />
                     </div>
 
-                    <div>
-                        <h3 className="text-lg font-bold text-white mb-3">Password Enumeration</h3>
+                    <div className="mb-6">
+                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">Password Enumeration</h3>
                         <PayloadBlock
                             content={AD_ENUM.passwords.map(item => `# ${item.title}\n${item.cmd}`).join('\n\n')}
                         />
                     </div>
 
-                    <div>
-                        <h3 className="text-lg font-bold text-white mb-3">ACL Enumeration</h3>
+                    <div className="mb-6">
+                        <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">ACL Enumeration</h3>
                         <PayloadBlock
                             content={AD_ENUM.acl.map(item => `# ${item.title}\n${item.cmd}`).join('\n\n')}
                         />

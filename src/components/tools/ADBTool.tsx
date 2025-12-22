@@ -61,8 +61,7 @@ export default function ADBTool() {
     return (
         <div className="space-y-6">
             <div>
-                <h2 className="text-2xl font-black text-white flex items-center gap-2">
-                    <Smartphone className="text-htb-green" size={24} />
+                <h2 className="text-2xl font-black text-white">
                     ADB Commands
                 </h2>
                 <p className="text-gray-400">
@@ -120,7 +119,10 @@ export default function ADBTool() {
             </Card>
 
             {/* Command List */}
-            <div className="space-y-3">
+            <div className="mb-6">
+                <h3 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-3 border-b border-white/10 pb-2">
+                    ADB Commands
+                </h3>
                 <PayloadBlock
                     content={ADB_COMMANDS.map(item => `# ${item.name} - ${item.desc}\n${formatCommand(item.cmd)}`).join('\n\n')}
                 />

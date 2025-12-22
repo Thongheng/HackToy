@@ -15,7 +15,7 @@ export const ToolHeader: React.FC<ToolHeaderProps> = ({
     icon
 }) => {
     return (
-        <div className="flex items-start justify-between mb-6 animate-fade-in">
+        <div className="flex items-start justify-between mb-6 animate-fadeIn">
             <div>
                 <div className="flex items-center gap-3 mb-2">
                     {/* Badge */}

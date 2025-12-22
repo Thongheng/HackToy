@@ -7,7 +7,7 @@ export default function Home() {
     const navigate = useNavigate();
 
     return (
-        <div className="max-w-7xl mx-auto px-6 py-20 animate-fade-in">
+        <div className="max-w-7xl mx-auto px-6 py-20 animate-fadeIn">
             {/* Hero */}
             <div className="text-center mb-20">
                 <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-8">

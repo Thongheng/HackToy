@@ -1,7 +1,8 @@
 import React from 'react';
 import type { Tool, GlobalInputs } from '../../types';
-import { Copy, Settings as SettingsIcon } from 'lucide-react';
-
+import { Settings as SettingsIcon } from 'lucide-react';
+import { PayloadBlock } from '../ui';
+import { ToolHeader } from '../ui/ToolHeader';
 
 interface ToolRendererProps {
     tool: Tool;
@@ -11,17 +12,12 @@ interface ToolRendererProps {
     handleCopy: (text: string) => void;
 }
 
-import { ToolHeader } from '../ui/ToolHeader';
-import { useClipboard } from '../../hooks/useClipboard';
-import { Check } from 'lucide-react';
-
 export const ToolRenderer: React.FC<ToolRendererProps> = ({
     tool,
     inputs,
     toolArgs,
     updateArg,
 }) => {
-    const { copied, copy } = useClipboard();
 
     // If tool has a custom component, render it directly
     if (tool.component) {
@@ -38,7 +34,6 @@ export const ToolRenderer: React.FC<ToolRendererProps> = ({
             <ToolHeader
                 title={tool.name}
                 description={tool.desc}
-                badge={tool.source === 'hacktools' ? 'HT' : 'RT'}
             />
 
             {/* Configuration Panel */}
@@ -89,30 +84,8 @@ export const ToolRenderer: React.FC<ToolRendererProps> = ({
                 </div>
             )}
 
-            {/* Terminal Output */}
-            <div className="htb-terminal">
-                <div className="htb-terminal-header">
-                    <div className="htb-terminal-dots">
-                        <div className="htb-terminal-dot htb-terminal-dot--red"></div>
-                        <div className="htb-terminal-dot htb-terminal-dot--yellow"></div>
-                        <div className="htb-terminal-dot htb-terminal-dot--green"></div>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <span className="text-xs font-mono text-gray-500 uppercase">bash</span>
-                        <button
-                            onClick={() => copy(generatedCommand)}
-                            className={`flex items-center gap-2 text-xs font-bold transition-colors ${copied ? 'text-[#a2ff00]' : 'text-gray-400 hover:text-[#a2ff00]'
-                                }`}
-                        >
-                            {copied ? <Check size={14} /> : <Copy size={14} />}
-                            {copied ? 'Copied!' : 'Copy'}
-                        </button>
-                    </div>
-                </div>
-                <div className="htb-terminal-content">
-                    <pre className="whitespace-pre-wrap font-mono text-sm">{generatedCommand}</pre>
-                </div>
-            </div>
+            {/* Command Output */}
+            <PayloadBlock content={generatedCommand} />
         </div>
     );
 };
